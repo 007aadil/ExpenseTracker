@@ -1,157 +1,78 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
-:root {
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+/* Tailwind version of the App layout */
+.App {
+  @apply flex flex-col justify-center items-center min-h-screen py-4 bg-gray-100;
 }
 
-* {
-  box-sizing: border-box;
+/* Custom button styles */
+button {
+  @apply transition-all duration-300 ease-in-out;
 }
 
-body {
-  background-color: #f7f7f7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Lato', sans-serif;
+button:hover {
+  @apply transform translate-y-[-2px]; /* Lift effect */
 }
 
-.container {
-  margin: 30px auto;
-  width: 350px;
+/* Transaction list item styles */
+li {
+  @apply rounded-lg py-3 px-4 mb-2 bg-white shadow-md flex justify-between items-center transition-transform duration-200;
 }
 
-h1 {
-  letter-spacing: 1px;
-  margin: 0;
+li:hover {
+  @apply transform translate-x-[4px]; /* Hover effect */
 }
 
-h3 {
-  border-bottom: 1px solid #bbb;
-  padding-bottom: 10px;
-  margin: 40px 0 10px;
-}
-
-h4 {
-  margin: 0;
-  text-transform: uppercase;
-}
-
+/* Income and expense container */
 .inc-exp-container {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
+  @apply flex justify-between gap-4 my-5;
 }
 
-.inc-exp-container > div {
-  flex: 1;
-  text-align: center;
+.inc-exp-container div {
+  @apply flex-1 py-3 px-4 rounded-lg bg-white shadow-md text-center;
 }
 
-.inc-exp-container > div:first-of-type {
-  border-right: 1px solid #dedede;
+.inc-exp-container div h4 {
+  @apply mb-2 font-semibold text-gray-800;
 }
 
-.money {
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin: 5px 0;
+.inc-exp-container div p {
+  @apply text-xl font-bold;
 }
 
-.money.plus {
-  color: #2ecc71;
+/* History section styles */
+h3 {
+  @apply text-2xl font-bold text-gray-800 mb-4;
 }
 
-.money.minus {
-  color: #c0392b;
+/* Input and label styling */
+input {
+  @apply w-full py-3 px-4 mt-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500;
 }
 
 label {
-  display: inline-block;
-  margin: 10px 0;
+  @apply text-sm text-gray-600;
 }
 
-input[type='text'],
-input[type='number'] {
-  border: 1px solid #dedede;
-  border-radius: 2px;
-  display: block;
-  font-size: 16px;
-  padding: 10px;
-  width: 100%;
+/* Add transaction button */
+.add-transaction-btn {
+  @apply w-full py-3 px-4 bg-blue-500 text-white font-bold rounded-lg cursor-pointer transition-transform duration-200 ease-in-out;
 }
 
-.btn {
-  cursor: pointer;
-  background-color: #9c88ff;
-  box-shadow: var(--box-shadow);
-  color: #fff;
-  border: 0;
-  display: block;
-  font-size: 16px;
-  margin: 10px 0 30px;
-  padding: 10px;
-  width: 100%;
+.add-transaction-btn:hover {
+  @apply bg-blue-600 transform translate-y-[-2px];
 }
 
-.btn:focus,
-.delete-btn:focus {
-  outline: 0;
+/* Error message styles */
+.alert {
+  @apply bg-red-500 text-white py-2 rounded-lg text-center mb-4;
 }
 
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 40px;
-}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .inc-exp-container {
+    @apply flex-col gap-3;
+  }
 
-.list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.list li.plus {
-  border-right: 5px solid #2ecc71;
-}
-
-.list li.minus {
-  border-right: 5px solid #c0392b;
-}
-
-.delete-btn {
-  cursor: pointer;
-  background-color: #e74c3c;
-  border: 0;
-  color: #fff;
-  font-size: 20px;
-  line-height: 20px;
-  padding: 2px 5px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-100%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.list li:hover .delete-btn {
-  opacity: 1;
-}
-
-@media (max-width: 320px) {
-  .container {
-    width: 300px;
+  li {
+    @apply flex-col gap-2;
   }
 }
